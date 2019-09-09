@@ -19,7 +19,7 @@ public class Player {
     public int yCoord;
 
     public int moveCounter;
-
+    public int SnakeSpeed = 5;
     public String direction;//is your first name one?
 
     public Player(Handler handler){
@@ -35,7 +35,26 @@ public class Player {
 
     public void tick(){
         moveCounter++;
-        if(moveCounter>=5) {
+        
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
+        	SnakeSpeed = SnakeSpeed - 1;
+        	if(SnakeSpeed < 0) {
+        		
+        		SnakeSpeed = 0;
+        	}
+        	
+        	
+        }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
+        	SnakeSpeed = SnakeSpeed + 1;
+        	if(SnakeSpeed > 12) {
+        		
+        		SnakeSpeed = 12;
+        	}
+        
+        	
+        }
+        
+        if(moveCounter>=SnakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -48,7 +67,7 @@ public class Player {
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
         }
-
+        
     }
 
     public void checkCollisionAndMove(){
@@ -104,7 +123,7 @@ public class Player {
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-                g.setColor(Color.WHITE);
+                g.setColor(Color.green);
 
                 if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
                     g.fillRect((i*handler.getWorld().GridPixelsize),
