@@ -19,7 +19,8 @@ public class Player {
     public int yCoord;
 
     public int moveCounter;
-
+    public int StudentId = 6;
+    public int SnakeSpeed = 5;
     public String direction;//is your first name one?
 
     public Player(Handler handler){
@@ -35,7 +36,28 @@ public class Player {
 
     public void tick(){
         moveCounter++;
-        if(moveCounter>=5) {
+        
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
+        	SnakeSpeed = SnakeSpeed - 1;
+        	if(SnakeSpeed < 0) {
+        		
+        		SnakeSpeed = 0;
+        	}
+        	
+        	
+        }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
+        	SnakeSpeed = SnakeSpeed + 1;
+        	if(SnakeSpeed > 12) {
+        		
+        		SnakeSpeed = 12;
+        	}
+        
+        	
+        }
+        
+     
+        
+        if(moveCounter>=SnakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -48,7 +70,7 @@ public class Player {
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
         }
-
+        
     }
 
     public void checkCollisionAndMove(){
@@ -104,8 +126,8 @@ public class Player {
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-                g.setColor(Color.WHITE);
-
+                g.setColor(Color.white);
+                
                 if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
                     g.fillRect((i*handler.getWorld().GridPixelsize),
                             (j*handler.getWorld().GridPixelsize),
@@ -120,6 +142,8 @@ public class Player {
     }
 
     public void Eat(){
+    	
+    	
         lenght++;
         Tail tail= null;
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
@@ -149,6 +173,14 @@ public class Player {
                     }
 
                 }
+                if(direction == "Left") {
+                	SnakeSpeed = SnakeSpeed - StudentId;
+                  	if(SnakeSpeed < 0) {
+                		
+                		SnakeSpeed = 0;
+                	}
+                  	
+                  }
                 break;
             case "Right":
                 if( handler.getWorld().body.isEmpty()){
@@ -173,6 +205,14 @@ public class Player {
                     }
 
                 }
+                if(direction == "Right") {
+                	SnakeSpeed = SnakeSpeed - StudentId;
+                  	if(SnakeSpeed < 0) {
+                		
+                		SnakeSpeed = 0;
+                	}
+                  	
+                  }
                 break;
             case "Up":
                 if( handler.getWorld().body.isEmpty()){
@@ -197,6 +237,14 @@ public class Player {
                     }
 
                 }
+                if(direction == "Up") {
+                	SnakeSpeed = SnakeSpeed - StudentId;
+                  	if(SnakeSpeed < 0) {
+                		
+                		SnakeSpeed = 0;
+                	}
+                  	
+                  }
                 break;
             case "Down":
                 if( handler.getWorld().body.isEmpty()){
@@ -221,6 +269,14 @@ public class Player {
                     }
 
                 }
+                if(direction == "Down") {
+                	SnakeSpeed = SnakeSpeed - StudentId;
+                  	if(SnakeSpeed < 0) {
+                		
+                		SnakeSpeed = 0;
+                	}
+                  	
+                  }
                 break;
         }
         handler.getWorld().body.addLast(tail);
@@ -237,7 +293,7 @@ public class Player {
             }
         }
     }
-
+    
     public boolean isJustAte() {
         return justAte;
     }
@@ -245,4 +301,6 @@ public class Player {
     public void setJustAte(boolean justAte) {
         this.justAte = justAte;
     }
+    
+    
 }
