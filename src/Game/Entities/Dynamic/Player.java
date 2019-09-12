@@ -20,7 +20,7 @@ public class Player {
 
     public int moveCounter;
     public int StudentId = 6;
-    public int SnakeSpeed = 5;
+    public int SnakeSpeed = 20;
     public String direction;//is your first name one?
 
     public Player(Handler handler){
@@ -47,9 +47,9 @@ public class Player {
         	
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
         	SnakeSpeed = SnakeSpeed + 1;
-        	if(SnakeSpeed > 12) {
+        	if(SnakeSpeed > 20) {
         		
-        		SnakeSpeed = 12;
+        		SnakeSpeed = 20;
         	}
         
         	
@@ -94,7 +94,7 @@ public class Player {
                 break;
             case "Up":
                 if(yCoord==0){
-                    kill();
+                	kill();
                 }else{
                     yCoord--;
                 }
