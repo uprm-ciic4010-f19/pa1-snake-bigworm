@@ -11,6 +11,7 @@ import Resources.Images;
 
 import javax.sound.sampled.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -148,6 +149,7 @@ public class GameSetUp implements Runnable {
                 ticks = 0;
                 timer = 0;
             }
+            	
         }
 
         stop();
