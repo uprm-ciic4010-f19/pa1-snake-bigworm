@@ -16,6 +16,7 @@ public class Apple {
         this.handler=handler;
         this.xCoord=x;
         this.yCoord=y;
+        
     }
 
 

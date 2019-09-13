@@ -19,8 +19,10 @@ public class Player {
 	public int yCoord;
 
 	public int moveCounter;
-	public int StudentId = 6;
+	public int StudentId = 5 + 1;
 	public int SnakeSpeed = 20;
+	public double score = 0;
+	public int pasos = 0;
 	public boolean n = false;
 	public String direction;//is your first name one?
 
@@ -62,13 +64,13 @@ public class Player {
 			checkCollisionAndMove();
 			moveCounter=0;
 		}
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) && direction != "Down"){
 			direction="Up";
-		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
+		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN) && direction != "Up"){
 			direction="Down";
-		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
+		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT) && direction != "Right"){
 			direction="Left";
-		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
+		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT) && direction != "Left"){
 			direction="Right";
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
 			n = true;
@@ -120,6 +122,9 @@ public class Player {
 
 		if(handler.getWorld().appleLocation[xCoord][yCoord]){
 			Eat();
+			score = Math.sqrt(2*score + 1);
+			
+
 		}
 
 		if(!handler.getWorld().body.isEmpty()) {
@@ -131,10 +136,14 @@ public class Player {
 	}
 
 	public void render(Graphics g,Boolean[][] playeLocation){
+		g.setColor(Color.WHITE);
+		g.drawString("Score: " + score, 730, 15);
+		
+		
 		Random r = new Random();
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-				g.setColor(Color.white);
+				g.setColor(Color.green);
 
 				if(playeLocation[i][j]){
 					g.fill3DRect((i*handler.getWorld().GridPixelsize),
@@ -145,8 +154,10 @@ public class Player {
 
 			}
 		}
+	
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
+			  //if() { 
 				g.setColor(Color.GREEN);
 
 				if(handler.getWorld().appleLocation[i][j]){
@@ -157,7 +168,8 @@ public class Player {
 				}
 			}
 		}
-	}
+		}
+	//}
 
 	public void Eat(){
 
@@ -173,10 +185,15 @@ public class Player {
 			handler.getWorld().appleLocation[xCoord][yCoord]=false;
 			handler.getWorld().appleOnBoard=false;
 			SnakeSpeed = SnakeSpeed - StudentId;
+
+
 			if(SnakeSpeed < 0) {
 
 				SnakeSpeed = 0;
+
 			}
+
+
 		}
 		switch (direction){
 		case "Left":
