@@ -12,53 +12,53 @@ import javax.swing.*;
 
 public class DisplayScreen {
 
-    private JFrame frame;
-    private Canvas canvas;
-    private String title;
-    private int width, height;
+	private JFrame frame;
+	private Canvas canvas;
+	private String title;
+	private int width, height;
 
-    public DisplayScreen(String title, int width, int height){
-        this.title = title;
-        this.width = width;
-        this.height = height;
+	public DisplayScreen(String title, int width, int height){
+		this.title = title;
+		this.width = width;
+		this.height = height;
 
 
 
-        createDisplay();
-    }
+		createDisplay();
+	}
 
-    private void createDisplay(){
-        frame = new JFrame(title);
-        frame.setSize(width, height);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setBackground(Color.black);
+	private void createDisplay(){
+		frame = new JFrame(title);
+		frame.setSize(width, height);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		frame.setBackground(Color.black);
 
-        try {
-            frame.setIconImage(ImageIO.read(new File("res/Sheets/icon.png")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		try {
+			frame.setIconImage(ImageIO.read(new File("res/Sheets/icon.png")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(width, height));
-        canvas.setMaximumSize(new Dimension(width, height));
-        canvas.setMinimumSize(new Dimension(width, height));
-        canvas.setFocusable(false);
-        canvas.setBackground(new Color(178,27,163));
+		canvas = new Canvas();
+		canvas.setPreferredSize(new Dimension(width, height));
+		canvas.setMaximumSize(new Dimension(width, height));
+		canvas.setMinimumSize(new Dimension(width, height));
+		canvas.setFocusable(false);
+		canvas.setBackground(new Color(178,27,163));
 
-        frame.add(canvas);
-        frame.pack();
-    }
+		frame.add(canvas);
+		frame.pack();
+	}
 
-    public Canvas getCanvas(){
-        return canvas;
-    }
+	public Canvas getCanvas(){
+		return canvas;
+	}
 
-    public JFrame getFrame(){
-        return frame;
-    }
+	public JFrame getFrame(){
+		return frame;
+	}
 
 }

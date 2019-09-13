@@ -123,7 +123,7 @@ public class Player {
 		if(handler.getWorld().appleLocation[xCoord][yCoord]){
 			Eat();
 			score = Math.sqrt(2*score + 1);
-			
+
 
 		}
 
@@ -138,8 +138,8 @@ public class Player {
 	public void render(Graphics g,Boolean[][] playeLocation){
 		g.setColor(Color.WHITE);
 		g.drawString("Score: " + score, 730, 15);
-		
-		
+
+
 		Random r = new Random();
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
@@ -154,10 +154,10 @@ public class Player {
 
 			}
 		}
-	
+
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-			  //if() { 
+				//if() { 
 				g.setColor(Color.GREEN);
 
 				if(handler.getWorld().appleLocation[i][j]){
@@ -168,7 +168,7 @@ public class Player {
 				}
 			}
 		}
-		}
+	}
 	//}
 
 	public void Eat(){
@@ -220,14 +220,7 @@ public class Player {
 				}
 
 			}
-			/*if(direction == "Left") {
-                	SnakeSpeed = SnakeSpeed - StudentId;
-                  	if(SnakeSpeed < 0) {
 
-                		SnakeSpeed = 0;
-                	}
-
-                  }*/
 			break;
 		case "Right":
 			if( handler.getWorld().body.isEmpty()){
@@ -252,14 +245,7 @@ public class Player {
 				}
 
 			}
-			/*if(direction == "Right") {
-                	SnakeSpeed = SnakeSpeed - StudentId;
-                  	if(SnakeSpeed < 0) {
 
-                		SnakeSpeed = 0;
-                	}
-
-                  }*/
 			break;
 		case "Up":
 			if( handler.getWorld().body.isEmpty()){
@@ -284,14 +270,7 @@ public class Player {
 				}
 
 			}
-			/* if(direction == "Up") {
-                	SnakeSpeed = SnakeSpeed - StudentId;
-                  	if(SnakeSpeed < 0) {
 
-                		SnakeSpeed = 0;
-                	}
-
-                  }*/
 			break;
 		case "Down":
 			if( handler.getWorld().body.isEmpty()){
@@ -316,14 +295,7 @@ public class Player {
 				}
 
 			}
-			/* if(direction == "Down") {
-                	SnakeSpeed = SnakeSpeed - StudentId;
-                  	if(SnakeSpeed < 0) {
 
-                		SnakeSpeed = 0;
-                	}
-
-                  }*/
 			break;
 		}
 		handler.getWorld().body.addLast(tail);
