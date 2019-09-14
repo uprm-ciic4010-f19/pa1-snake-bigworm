@@ -1,10 +1,10 @@
 package Worlds;
 
+import java.awt.Graphics;
+import java.util.Random;
+
 import Game.Entities.Static.Apple;
 import Main.Handler;
-
-import java.awt.*;
-import java.util.Random;
 
 /**
  * Created by AlexVR on 7/2/2018.

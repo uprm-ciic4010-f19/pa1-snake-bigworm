@@ -1,5 +1,19 @@
 package Main;
 
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import Display.DisplayScreen;
 import Game.GameStates.GameState;
 import Game.GameStates.MenuState;
@@ -8,13 +22,7 @@ import Game.GameStates.State;
 import Input.KeyManager;
 import Input.MouseManager;
 import Resources.Images;
-
-import javax.sound.sampled.*;
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
+import Game.GameStates.OverState;
 
 
 /**
@@ -45,6 +53,7 @@ public class GameSetUp implements Runnable {
     public State gameState;
     public State menuState;
     public State pauseState;
+    public State overState;
 
     //Res.music
     private InputStream audioFile;
@@ -81,7 +90,7 @@ public class GameSetUp implements Runnable {
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
         pauseState = new PauseState(handler);
-
+        overState = new OverState(handler);
         State.setState(menuState);
 
         try {

@@ -1,12 +1,13 @@
 package Worlds;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.LinkedList;
+
 import Game.Entities.Dynamic.Player;
 import Game.Entities.Dynamic.Tail;
 import Game.Entities.Static.Apple;
 import Main.Handler;
-
-import java.awt.*;
-import java.util.LinkedList;
 
 
 /**
